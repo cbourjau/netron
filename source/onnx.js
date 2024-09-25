@@ -1258,11 +1258,11 @@ onnx.Context.Graph = class {
         inputs.every((input) => inputMap.delete(input.name));
         outputs.every((output) => outputMap.delete(output.name));
         nodes = nodes.filter((node) => {
-            const constant = node &&
-                node.op_type === 'Constant' &&
-                node.attribute.length === 1 && node.attribute[0] &&
-                node.input.length === 0 &&
-                node.output.length === 1 && node.output[0] && inputMap.get(node.output[0].name) === 1 && outputMap.get(node.output[0].name) === 1;
+            const constant = false; // node &&
+                // node.op_type === 'Constant' &&
+                // node.attribute.length === 1 && node.attribute[0] &&
+                // node.input.length === 0 &&
+                // node.output.length === 1 && node.output[0] && inputMap.get(node.output[0].name) === 1 && outputMap.get(node.output[0].name) === 1;
             const attribute = constant ? node.attribute[0] : null;
             if (attribute && attribute.name === 'value' && attribute.type === onnx.AttributeType.TENSOR && attribute.t) {
                 const tensor = this.tensor(node.output[0].name);
